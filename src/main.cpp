@@ -34,6 +34,7 @@ double temp = 0;
 double pressure = 0;
 
 std::unique_ptr<jose1984::sender::Sender> sender;
+String sensor_id = "BMP180_" + String(ESP.getChipId());
 
 void setup()
 {
@@ -104,7 +105,7 @@ void setup()
     ESP.reset();
   }
 
-  sender = std::make_unique<jose1984::sender::Sender>(String(server_url), WiFi.localIP(), WiFi.macAddress());
+  sender = std::make_unique<jose1984::sender::Sender>(String(server_url), sensor_id);
 }
 
 void loop()

@@ -12,7 +12,7 @@
 
 namespace jose1984::sender
 {
-    Sender::Sender(const String server_url, const IPAddress ip, const String mac) : m_server_url(server_url), m_ip(ip), m_mac(mac) {}
+    Sender::Sender(const String server_url, const String sensor_id) : m_server_url(server_url), m_sensor_id(sensor_id) {}
 
     uint64_t Sender::sendMeasurements(const float &temperature, const float &pressure)
     {
@@ -23,7 +23,7 @@ namespace jose1984::sender
         if (httpClient.begin(client, m_server_url.c_str()))
         {
             const String data =
-                "temperature=" + String(temperature) + "&pressure=" + String(pressure) + "&ip=" + m_ip.toString() + "&mac=" + m_mac;
+                "temperature=" + String(temperature) + "&pressure=" + String(pressure) + "&sensor_id=" + m_sensor_id;
 
             httpClient.addHeader("Content-Type", "application/x-www-form-urlencoded");
             httpClient.setTimeout(60e3);

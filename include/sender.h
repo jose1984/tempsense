@@ -22,10 +22,9 @@ namespace jose1984::sender
          * @brief Constructor for the Sender class.
          *
          * @param server_url The URL of the server to which the measurements will be sent.
-         * @param ip The local IP address of the device sending the measurements.
-         * @param mac The MAC address of the device sending the measurements.
+         * @param sensor_id The sensor identifier.
          */
-        explicit Sender(const String server_url, const IPAddress ip, const String mac);
+        explicit Sender(const String server_url, const String sensor_id);
 
         /**
          * @brief Send measurements to the server and retrieve the sleep duration in seconds.
@@ -39,8 +38,7 @@ namespace jose1984::sender
 
     private:
         const String m_server_url;
-        const IPAddress m_ip;
-        const String m_mac;
+        const String m_sensor_id;
     };
 }
 
